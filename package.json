@@ -1,15 +1,15 @@
 {
     "private": true,
-    "name": "definitely-typed",
+    "name": "@seonghun/boocrum-types",
     "version": "0.0.3",
-    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "homepage": "https://github.com/seonghunYang/DefinitelyTyped",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+        "url": "git+https://github.com/seonghunYang/DefinitelyTyped.git"
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+        "url": "https://github.com/seonghunYang/DefinitelyTyped/issues"
     },
     "engines": {
         "node": ">=7.8.0"
