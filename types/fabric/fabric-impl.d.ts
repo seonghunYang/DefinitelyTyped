@@ -175,6 +175,7 @@ interface IEvent<E extends Event = Event> {
     target?: Object | undefined;
     subTargets?: Object[] | undefined;
     selected?: Object[] | undefined;
+    deselected?: Object[] | undefined;
     button?: number | undefined;
     isClick?: boolean | undefined;
     pointer?: Point | undefined;
@@ -729,7 +730,7 @@ export class Intersection {
     /**
      * Checks if polygon intersects rectangle
      */
-    static intersectPolygonRectangle(points: Point[], r1: Point, r2: Point): Intersection;
+    static intersectPolygonRectangle(points: Point[], r1: number, r2: number): Intersection;
 }
 
 interface IPatternOptions {
@@ -1693,6 +1694,10 @@ export class StaticCanvas {
 }
 
 interface ICanvasOptions extends IStaticCanvasOptions {
+    isDragging?:boolean;
+    lastPosX?:number;
+    lastPosY?:number;
+    mode: 'postit' | 'section' | 'move' | 'select' | 'draw' | 'edit';
     /**
      * When true, objects can be transformed by one side (unproportionally)
      * when dragged on the corners that normally would not do that.
@@ -2695,12 +2700,15 @@ export class Line {
 }
 
 interface IObjectOptions {
+    objectId: string;
     /**
      * Type of an object (rect, circle, path, etc.).
      * Note that this property is meant to be read-only and not meant to be modified.
      * If you modify, certain parts of Fabric (such as JSON loading) won't work correctly.
      */
-    type?: string | undefined;
+    type: "postit" | "section" | "draw" | "text" | "title" | "nameText" | "cursor" | "rect" | "line" | "editable";
+
+    isSocketObject: boolean;
 
     /**
      * Horizontal origin of transformation of an object (one of "left", "right", "center")
@@ -4163,7 +4171,6 @@ export class Rect extends Object {
 }
 
 interface TextOptions extends IObjectOptions {
-    type?: string | undefined;
     /**
      * Font size (in pixels)
      * @type Number
